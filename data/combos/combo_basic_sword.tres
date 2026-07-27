@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ComboChain" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/ComboChain.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/core/ComboStep.gd" id="2"]
+
+[sub_resource type="Resource" id="ComboStep_1"]
+script = ExtResource("2")
+animation_name = &"attack_1"
+damage_type = "physical"
+damage_multiplier = 1.0
+startup_time = 0.05
+active_time = 0.1
+recovery_time = 0.15
+input_window_after = 0.3
+
+[sub_resource type="Resource" id="ComboStep_2"]
+script = ExtResource("2")
+animation_name = &"attack_2"
+damage_type = "physical"
+damage_multiplier = 1.1
+startup_time = 0.05
+active_time = 0.1
+recovery_time = 0.15
+input_window_after = 0.3
+
+[sub_resource type="Resource" id="ComboStep_3"]
+script = ExtResource("2")
+animation_name = &"attack_3"
+damage_type = "physical"
+damage_multiplier = 1.5
+startup_time = 0.08
+active_time = 0.12
+recovery_time = 0.25
+input_window_after = 0.3
+
+[resource]
+script = ExtResource("1")
+steps = Array[ExtResource("2")]([SubResource("ComboStep_1"), SubResource("ComboStep_2"), SubResource("ComboStep_3")])

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b6q2k8h4m1twn"]
+
+[ext_resource type="Script" path="res://scripts/core/ClimbableZone.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_climbzone"]
+size = Vector2(32, 96)
+
+[node name="ClimbableZone" type="Area2D"]
+monitoring = false
+monitorable = true
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_climbzone")

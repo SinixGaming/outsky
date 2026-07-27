@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b3n8q1h7m4ktw"]
+
+[ext_resource type="Script" path="res://scripts/entities/Waypoint.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waypoint"]
+size = Vector2(28, 40)
+
+[node name="Waypoint" type="Area2D"]
+monitoring = true
+monitorable = false
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_waypoint")

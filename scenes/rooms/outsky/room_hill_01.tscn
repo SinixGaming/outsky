@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c8n4h1q7m2ktw"]
+
+[ext_resource type="Script" path="res://scripts/core/Room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/core/SpawnPoint.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/entities/Enemy.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/core/RoomTransitionZone.gd" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/outsky/room_hill_02.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/entities/RestPoint.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/entities/Chest.tscn" id="7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(40, 200)
+
+[node name="RoomHill01" type="Node2D"]
+script = ExtResource("1")
+room_id = &"outsky_hill_01"
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(480, 320)
+
+[node name="SpawnDefault" type="Marker2D" parent="."]
+position = Vector2(100, 500)
+script = ExtResource("2")
+spawn_id = &"default"
+
+[node name="SpawnFromHill02" type="Marker2D" parent="."]
+position = Vector2(860, 500)
+script = ExtResource("2")
+spawn_id = &"from_hill_02"
+
+[node name="Enemy" parent="." instance=ExtResource("3")]
+position = Vector2(500, 500)
+spawn_uid = &"hill01_enemy_01"
+
+[node name="RestPoint" parent="." instance=ExtResource("6")]
+position = Vector2(160, 500)
+rest_spawn_id = &"default"
+
+[node name="Chest" parent="." instance=ExtResource("7")]
+position = Vector2(300, 500)
+chest_uid = "outsky_hill_01_chest_a"
+gold_reward = 15
+
+[node name="DoorToHill02" type="Area2D" parent="."]
+position = Vector2(940, 480)
+script = ExtResource("4")
+target_room_scene = ExtResource("5")
+target_spawn_id = &"from_hill_01"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToHill02"]
+shape = SubResource("RectangleShape2D_door")
