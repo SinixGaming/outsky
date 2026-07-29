@@ -19,12 +19,34 @@ var data: PlayerSaveData = PlayerSaveDataScript.new()
 
 ## growth_points: Dictionary with up to 5 total points across
 ## PlayerSaveData.GROWTH_KEYS ("health", "physical_damage", "magic_damage",
-## "stamina", "speed"). Validation of the 5-point budget is the UI's job
-## (CharacterCreation.gd); this just applies whatever it's given.
+## "stamina", "speed"). Validation of the 5-point budget is the caller's
+## job (CharacterCreation.gd, or StatAllocationPopup.gd); this just applies
+## whatever it's given. Pass {} for a genuine zero-allocation start (e.g.
+## spawning into the house before the player has visited the Cupboard).
 func new_game(character_name: String, growth_points: Dictionary, starting_room_id: StringName, starting_spawn_id: StringName = &"default") -> void:
 	data = PlayerSaveDataScript.new()
 	data.character_name = character_name
 
+	_apply_growth_points(growth_points)
+
+	data.current_room_id = starting_room_id
+	data.current_spawn_id = starting_spawn_id
+	data.last_rest_room_id = starting_room_id
+	data.last_rest_spawn_id = starting_spawn_id
+
+	EventBus.player_stats_changed.emit()
+
+
+## Applies a creation-time stat allocation to the LIVE data in place —
+## unlike new_game(), does not reset current_room_id/gold/inventory. Used
+## by the Cupboard/StatAllocationPopup flow, where chargen happens after
+## the player has already spawned into the house rather than before.
+func apply_creation_growth(growth_points: Dictionary) -> void:
+	_apply_growth_points(growth_points)
+	EventBus.player_stats_changed.emit()
+
+
+func _apply_growth_points(growth_points: Dictionary) -> void:
 	for key in data.creation_growth.keys():
 		if growth_points.has(key):
 			data.creation_growth[key] = int(growth_points[key])
@@ -34,13 +56,6 @@ func new_game(character_name: String, growth_points: Dictionary, starting_room_i
 	data.stats.stamina += data.creation_growth["stamina"] * STAMINA_PER_POINT
 	data.stats.speed += data.creation_growth["speed"] * SPEED_PER_POINT
 	# data.creation_growth["health"] is deliberately not applied to stats.health here.
-
-	data.current_room_id = starting_room_id
-	data.current_spawn_id = starting_spawn_id
-	data.last_rest_room_id = starting_room_id
-	data.last_rest_spawn_id = starting_spawn_id
-
-	EventBus.player_stats_changed.emit()
 
 
 func set_current_room(room_id: StringName, spawn_id: StringName) -> void:

@@ -71,9 +71,9 @@ func _write_save_file(path: String, data_dict: Dictionary, make_backup: bool = t
 	file.close()
 
 	if make_backup and FileAccess.file_exists(path):
-		var dir := DirAccess.open(path.get_base_dir())
-		if dir:
-			dir.copy(path, path + ".bak")
+		var backup_dir := DirAccess.open(path.get_base_dir())
+		if backup_dir:
+			backup_dir.copy(path, path + ".bak")
 
 	var dir := DirAccess.open(path.get_base_dir())
 	if dir == null:

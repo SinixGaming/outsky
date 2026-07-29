@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://exbh3srgn6cd"]
+
+[ext_resource type="Script" path="res://scripts/core/Room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/core/SpawnPoint.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/entities/Cupboard.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/entities/OneWayPlatform.tscn" id="5"]
+[ext_resource type="Script" path="res://scripts/core/RoomTransitionZone.gd" id="6"]
+[ext_resource type="Texture2D" path="res://assets/room/starting_room_bg.png" id="7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arenadoor"]
+size = Vector2(20, 150)
+
+[node name="HouseStart" type="Node2D"]
+script = ExtResource("1")
+room_id = &"outsky_house_start"
+ground_color = Color(0.42, 0.32, 0.22, 1)
+ground_size = Vector2i(935, 270)
+floor_thickness = 23.0
+camera_mode = "boss_arena"
+camera_bounds = Rect2(0, 0, 935, 270)
+target_aspect_ratio = Vector2(935, 270)
+render_scale = 2
+region_id = &"outsky_home"
+quick_travel_origin_allowed = false
+quick_travel_destination = false
+is_dungeon_room = false
+disable_autosave = true
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(467.5, 135)
+scale = Vector2(0.559, 0.559)
+texture = ExtResource("7")
+
+[node name="SpawnDefault" type="Marker2D" parent="."]
+position = Vector2(110, 235)
+script = ExtResource("2")
+spawn_id = &"default"
+
+[node name="Cupboard" parent="." instance=ExtResource("4")]
+position = Vector2(520, 227)
+
+[node name="Shelf" parent="." instance=ExtResource("5")]
+position = Vector2(310, 175)
+
+[node name="DoorToArena" type="Area2D" parent="."]
+position = Vector2(905, 227)
+script = ExtResource("6")
+target_room_id = &"outsky_combat_test"
+target_spawn_id = &"default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToArena"]
+shape = SubResource("RectangleShape2D_arenadoor")

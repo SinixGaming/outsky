@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://bjxeh3njintce"]
+
+[ext_resource type="Script" path="res://scripts/ui/StatAllocationPopup.gd" id="1"]
+
+[node name="StatAllocationPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 0)
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Allocate Skill Points"
+horizontal_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Points remaining: 5"
+horizontal_alignment = 1
+
+[node name="Stat_health" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_health"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Health"
+
+[node name="MinusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_health"]
+layout_mode = 2
+text = "-"
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_health"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 0)
+horizontal_alignment = 1
+text = "0"
+
+[node name="PlusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_health"]
+layout_mode = 2
+text = "+"
+
+[node name="Stat_physical_damage" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_physical_damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Physical Damage"
+
+[node name="MinusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_physical_damage"]
+layout_mode = 2
+text = "-"
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_physical_damage"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 0)
+horizontal_alignment = 1
+text = "0"
+
+[node name="PlusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_physical_damage"]
+layout_mode = 2
+text = "+"
+
+[node name="Stat_magic_damage" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_magic_damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Magic Damage"
+
+[node name="MinusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_magic_damage"]
+layout_mode = 2
+text = "-"
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_magic_damage"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 0)
+horizontal_alignment = 1
+text = "0"
+
+[node name="PlusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_magic_damage"]
+layout_mode = 2
+text = "+"
+
+[node name="Stat_stamina" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_stamina"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stamina"
+
+[node name="MinusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_stamina"]
+layout_mode = 2
+text = "-"
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_stamina"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 0)
+horizontal_alignment = 1
+text = "0"
+
+[node name="PlusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_stamina"]
+layout_mode = 2
+text = "+"
+
+[node name="Stat_speed" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed"
+
+[node name="MinusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_speed"]
+layout_mode = 2
+text = "-"
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/VBoxContainer/Stat_speed"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 0)
+horizontal_alignment = 1
+text = "0"
+
+[node name="PlusButton" type="Button" parent="PanelContainer/VBoxContainer/Stat_speed"]
+layout_mode = 2
+text = "+"
+
+[node name="ConfirmButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Confirm"

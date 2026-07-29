@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://scripts/core/SpawnPoint.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/entities/Enemy.tscn" id="3"]
 [ext_resource type="Script" path="res://scripts/core/RoomTransitionZone.gd" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/outsky/room_hill_01.tscn" id="5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
 size = Vector2(40, 200)
@@ -15,7 +14,7 @@ room_id = &"outsky_hill_02"
 ground_color = Color(0.36, 0.29, 0.16, 1)
 camera_mode = "fixed"
 camera_bounds = Rect2(0, 0, 960, 640)
-target_resolution = Vector2i(1280, 960)
+target_aspect_ratio = Vector2(4, 3)
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(480, 320)
@@ -32,7 +31,7 @@ spawn_uid = &"hill02_enemy_01"
 [node name="DoorToHill01" type="Area2D" parent="."]
 position = Vector2(20, 480)
 script = ExtResource("4")
-target_room_scene = ExtResource("5")
+target_room_id = &"outsky_hill_01"
 target_spawn_id = &"from_hill_02"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToHill01"]

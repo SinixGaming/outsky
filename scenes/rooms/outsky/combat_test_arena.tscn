@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dfxbh5nmittce"]
+
+[ext_resource type="Script" path="res://scripts/core/Room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/rooms/CombatTestBackground.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/core/SpawnPoint.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/entities/StaticFurniture.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/entities/OneWayPlatform.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/entities/Hazard.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/entities/Enemy.tscn" id="7"]
+[ext_resource type="Script" path="res://scripts/core/RoomTransitionZone.gd" id="8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(30, 150)
+
+[node name="CombatTestArena" type="Node2D"]
+script = ExtResource("1")
+room_id = &"outsky_combat_test"
+ground_color = Color(0.22, 0.42, 0.18, 1)
+ground_size = Vector2i(900, 70)
+floor_thickness = 70.0
+camera_mode = "dynamic_scroll"
+camera_bounds = Rect2(0, 0, 900, 380)
+target_aspect_ratio = Vector2(16, 9)
+region_id = &"outsky_test"
+quick_travel_origin_allowed = false
+quick_travel_destination = false
+disable_autosave = true
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(450, 190)
+script = ExtResource("2")
+sky_size = Vector2i(900, 380)
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(450, 345)
+
+[node name="SpawnDefault" type="Marker2D" parent="."]
+position = Vector2(60, 289)
+script = ExtResource("3")
+spawn_id = &"default"
+
+[node name="PlatformA" parent="." instance=ExtResource("4")]
+position = Vector2(250, 225)
+placeholder_size = Vector2i(120, 20)
+placeholder_color = Color(0.45, 0.43, 0.4, 1)
+
+[node name="PlatformB" parent="." instance=ExtResource("4")]
+position = Vector2(650, 225)
+placeholder_size = Vector2i(120, 20)
+placeholder_color = Color(0.45, 0.43, 0.4, 1)
+
+[node name="Shelf" parent="." instance=ExtResource("5")]
+position = Vector2(450, 255)
+
+[node name="Hazard1" parent="." instance=ExtResource("6")]
+position = Vector2(400, 300)
+
+[node name="Hazard2" parent="." instance=ExtResource("6")]
+position = Vector2(750, 300)
+
+[node name="Enemy" parent="." instance=ExtResource("7")]
+position = Vector2(600, 289)
+spawn_uid = &"arena_enemy_01"
+
+[node name="DoorToHouse" type="Area2D" parent="."]
+position = Vector2(20, 270)
+script = ExtResource("8")
+target_room_id = &"outsky_house_start"
+target_spawn_id = &"default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToHouse"]
+shape = SubResource("RectangleShape2D_door")
