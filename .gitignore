@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# OS cruft (cross-platform: this project moves between Windows and macOS)
+.DS_Store
+Thumbs.db
